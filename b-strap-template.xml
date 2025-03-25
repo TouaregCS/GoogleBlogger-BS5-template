@@ -21,13 +21,13 @@
 
 </head>
 <body>
-  <header class='sticky-top'>
+    <header class='sticky-top'>
  <!-- Navbar -->
    <div class='container'>
     <nav class='navbar navbar-expand-md bg-dark navbar-dark'>
       <div class='container-fluid'>
         <a class='navbar-brand' href='#'>LOGO</a>
-        <button aria-controls='hamburger' aria-expanded='false' aria-label='Toggle navigation' class='navbar-toggler' data-bs-target='#hamburger' data-bs-toggle='collapse' type='button'>
+        <button aria-controls='collapsibleNavbar' aria-expanded='false' aria-label='Toggle navigation' class='navbar-toggler' data-bs-target='#collapsibleNavbar' data-bs-toggle='collapse' type='button'>
           <span class='navbar-toggler-icon'/>
         </button>
         <div class='collapse navbar-collapse' id='collapsibleNavbar'>
@@ -74,7 +74,7 @@
       </div>
     </nav>
    </div>   
-  </header>
+  </header>   
   <div class='container'>
     <div class='row'>
     <b:section id='MostPopularPost'>
@@ -86,58 +86,139 @@
           <b:widget-setting name='timeRange'>ALL_TIME</b:widget-setting>
         </b:widget-settings>
         <b:includable id='main'>
-              <!-- Hlavní kontejner s obrázkem na pozadí -->
               <div class='widget-content popular-posts'>
                   <b:loop values='data:posts' var='post'>
-                     	<div class='alert alert-danger mt-1' role='alert'>
-        			
-                          <h6><span class='danger'>Nejčtenější</span></h6>
-                          <header>
-                              <h1 class='alert-heading fst-italic mb-5' style='background-color: rgba(0, 0, 0, 0.6);'><data:post.title/></h1>
-                          </header>
-                          <div style='text-align:justify;'><data:post.snippet/></div>
-                          <div class='d-flex justify-content-end'>
-                              <a class='btn btn-outline-danger border-3 fw-bold text-dark stretched-link mt-2' expr:href='data:post.href'>celý článek</a>
-                          </div>
+                    <div class='alert alert-danger mt-1' role='alert'>
+                        <h6><span class='danger'>Nejčtenější</span></h6>
+                        <header>
+                            <h1 class='alert-heading fst-italic mb-5'><data:post.title/></h1>
+                        </header>
+                        <div class='row justify-content-md-center'>
+                            <div class='col col-sm-4' style='text-align:justify;'>
+                                <img class='img-fluid mx-auto d-block' expr:src='data:post.featuredImage'/>
+                            </div>
+                            <div class='col col-sm-4 p-1 my-5' style='text-align:justify;'>
+                                <data:post.snippet/>
+                            </div>
+                       
+                        <div class='col d-flex align-items-center'>
+                            <a class='btn btn-outline-danger border-3 fw-bold text-dark stretched-link my-5 mx-5' expr:href='data:post.href' style='text-align:center;'>celý článek</a>
                         </div>
-                        
-                    
-                  </b:loop>
+                           </div>
                     </div>
+                  </b:loop>
+              </div>
           </b:includable>
       </b:widget>
     </b:section>
     </div>  
+ <div class='container-md p-2'>
+   <div class='row'>
+   <div class='col-md-6'>	
+  <!-- Sekce 1: Článek měsíce (např. nejnovější nebo vybraný článek) -->
+  <b:section id='MonthlyPost'>
+    <b:widget id='PopularPosts1' locked='false' title='Článek měsíce' type='PopularPosts' version='1'>
+      <b:widget-settings>
+        <b:widget-setting name='numItemsToShow'>1</b:widget-setting>
+        <b:widget-setting name='showThumbnails'>true</b:widget-setting>
+        <b:widget-setting name='showSnippets'>true</b:widget-setting>
+        <b:widget-setting name='timeRange'>LAST_MONTH</b:widget-setting>
+      </b:widget-settings>
+      <b:includable id='main'>
+        <b:loop values='data:posts' var='post'>
+        
+              <div class='row'>
+                <div class='col d-flex flex-column'>
+                  <span class='danger'>Článek měsíce</span>
+                  <header>
+                    <h3 class='alert-heading fst-italic mb-3'><data:post.title/></h3>
+                  </header>
+                  <div class='mb-auto'>
+                    <p><data:post.snippet/></p>
+                  </div>
+                  <div class='d-flex justify-content-end'>
+                    <a class='btn btn-outline-danger border-3 fw-bold text-dark stretched-link mx-5' expr:href='data:post.href'>celý článek</a>
+                  </div>
+                </div>
+                <div class='col-auto d-flex d-lg-block'>
+                  <img class='img-fluid mx-auto d-block' expr:src='data:post.thumbnail'/>
+                </div>
+              </div>
+            
+          
+        </b:loop>
+      </b:includable>
+    </b:widget>
+  </b:section>
+     </div>   
+   <div class='col-md-6'>
+  <!-- Sekce 2: Nejčtenější příspěvky -->
+  <b:section id='PopularPosts'>
+    <b:widget id='PopularPosts2' locked='false' title='Oblíbené příspěvky' type='PopularPosts' version='1'>
+      <b:widget-settings>
+        <b:widget-setting name='numItemsToShow'>1</b:widget-setting>
+        <b:widget-setting name='showThumbnails'>true</b:widget-setting>
+        <b:widget-setting name='showSnippets'>true</b:widget-setting>
+        <b:widget-setting name='timeRange'>LAST_WEEK</b:widget-setting>
+      </b:widget-settings>
+      <b:includable id='main'>
+        <b:loop values='data:posts' var='post'>
+        
+              <div class='row'>
+                <div class='col d-flex flex-column'>
+                  <span class='danger'>Neuteklo Vám?</span>
+                  <header>
+                    <h3 class='alert-heading fst-italic mb-3'><data:post.title/></h3>
+                  </header>
+                  <div class='mb-auto'>
+                    <p><data:post.snippet/></p>
+                  </div>
+                  <div class='d-flex justify-content-end'>
+                    <a class='btn btn-outline-danger border-3 fw-bold text-dark stretched-link mx-5' expr:href='data:post.href'>celý článek</a>
+                  </div>
+                </div>
+                <div class='col-auto d-none d-lg-block'>
+                  <img class='img-fluid mx-auto d-block' expr:src='data:post.thumbnail'/>
+                </div>
+              </div>
+     
+        </b:loop>
+      </b:includable>
+    </b:widget>
+  </b:section>
+</div>
+     </div>
+   </div>
   <b:section class='main' id='main' showaddelement='yes'>
-      <b:widget id='Blog1' locked='false' title='Příspěvky na blogu' type='Blog' version='1'>
-        <b:widget-settings>
-          <b:widget-setting name='commentLabel'>comments</b:widget-setting>
-          <b:widget-setting name='showShareButtons'>false</b:widget-setting>
-          <b:widget-setting name='authorLabel'>Posted by</b:widget-setting>
-          <b:widget-setting name='style.unittype'>TextAndImage</b:widget-setting>
-          <b:widget-setting name='timestampLabel'>at</b:widget-setting>
-          <b:widget-setting name='reactionsLabel'/>
-          <b:widget-setting name='showAuthorProfile'>false</b:widget-setting>
-          <b:widget-setting name='style.layout'>1x1</b:widget-setting>
-          <b:widget-setting name='showLocation'>true</b:widget-setting>
-          <b:widget-setting name='showTimestamp'>true</b:widget-setting>
-          <b:widget-setting name='postsPerAd'>1</b:widget-setting>
-          <b:widget-setting name='style.bordercolor'>#ffffff</b:widget-setting>
-          <b:widget-setting name='showDateHeader'>true</b:widget-setting>
-          <b:widget-setting name='style.textcolor'>#ffffff</b:widget-setting>
-          <b:widget-setting name='showCommentLink'>true</b:widget-setting>
-          <b:widget-setting name='style.urlcolor'>#ffffff</b:widget-setting>
-          <b:widget-setting name='postLocationLabel'>Location:</b:widget-setting>
-          <b:widget-setting name='showAuthor'>true</b:widget-setting>
-          <b:widget-setting name='style.linkcolor'>#ffffff</b:widget-setting>
-          <b:widget-setting name='style.bgcolor'>#ffffff</b:widget-setting>
-          <b:widget-setting name='showLabels'>true</b:widget-setting>
-          <b:widget-setting name='postLabelsLabel'>Labels:</b:widget-setting>
-          <b:widget-setting name='showBacklinks'>false</b:widget-setting>
-          <b:widget-setting name='showInlineAds'>false</b:widget-setting>
-          <b:widget-setting name='showReactions'>false</b:widget-setting>
-        </b:widget-settings>
-        <b:includable id='main' var='top'>
+    <b:widget id='Blog1' locked='false' title='Příspěvky na blogu' type='Blog' version='1'>
+      <b:widget-settings>
+        <b:widget-setting name='commentLabel'>comments</b:widget-setting>
+        <b:widget-setting name='showShareButtons'>false</b:widget-setting>
+        <b:widget-setting name='authorLabel'>Posted by</b:widget-setting>
+        <b:widget-setting name='style.unittype'>TextAndImage</b:widget-setting>
+        <b:widget-setting name='timestampLabel'>at</b:widget-setting>
+        <b:widget-setting name='reactionsLabel'/>
+        <b:widget-setting name='showAuthorProfile'>false</b:widget-setting>
+        <b:widget-setting name='style.layout'>1x1</b:widget-setting>
+        <b:widget-setting name='showLocation'>true</b:widget-setting>
+        <b:widget-setting name='showTimestamp'>true</b:widget-setting>
+        <b:widget-setting name='postsPerAd'>1</b:widget-setting>
+        <b:widget-setting name='style.bordercolor'>#ffffff</b:widget-setting>
+        <b:widget-setting name='showDateHeader'>true</b:widget-setting>
+        <b:widget-setting name='style.textcolor'>#ffffff</b:widget-setting>
+        <b:widget-setting name='showCommentLink'>true</b:widget-setting>
+        <b:widget-setting name='style.urlcolor'>#ffffff</b:widget-setting>
+        <b:widget-setting name='postLocationLabel'>Location:</b:widget-setting>
+        <b:widget-setting name='showAuthor'>true</b:widget-setting>
+        <b:widget-setting name='style.linkcolor'>#ffffff</b:widget-setting>
+        <b:widget-setting name='style.bgcolor'>#ffffff</b:widget-setting>
+        <b:widget-setting name='showLabels'>true</b:widget-setting>
+        <b:widget-setting name='postLabelsLabel'>Labels:</b:widget-setting>
+        <b:widget-setting name='showBacklinks'>false</b:widget-setting>
+        <b:widget-setting name='showInlineAds'>false</b:widget-setting>
+        <b:widget-setting name='showReactions'>false</b:widget-setting>
+      </b:widget-settings>
+      <b:includable id='main' var='top'>
 <b:include data='posts' name='breadcrumb'/>
   
     <!-- posts -->
@@ -183,9 +264,9 @@
 
 
 </b:includable>
-        <b:includable id='backlinkDeleteIcon' var='backlink'/>
-        <b:includable id='backlinks' var='post'/>
-        <b:includable id='breadcrumb' var='posts'><b:if cond='data:blog.homepageUrl != data:blog.url'>
+      <b:includable id='backlinkDeleteIcon' var='backlink'/>
+      <b:includable id='backlinks' var='post'/>
+      <b:includable id='breadcrumb' var='posts'><b:if cond='data:blog.homepageUrl != data:blog.url'>
 <b:if cond='data:blog.pageType == &quot;static_page&quot;'>
 <div class='breadcrumbs'><span><a expr:href='data:blog.homepageUrl' rel='tag'>Hlavní strana</a></span> &#187; <span><data:blog.pageName/></span></div>
 <b:else/>
@@ -225,7 +306,7 @@
 </b:if>
 </b:if>
 </b:includable>
-        <b:includable id='comment-form' var='post'>
+      <b:includable id='comment-form' var='post'>
   <div class='comment-form'>
     <a name='comment-form'/>
     <b:if cond='data:mobile'>
@@ -248,7 +329,7 @@
     </script>
   </div>
 </b:includable>
-        <b:includable id='commentDeleteIcon' var='comment'>
+      <b:includable id='commentDeleteIcon' var='comment'>
   <span expr:class='&quot;item-control &quot; + data:comment.adminClass'>
     <b:if cond='data:showCmtPopup'>
       <div class='goog-toggle-button'>
@@ -261,19 +342,19 @@
     </b:if>
   </span>
 </b:includable>
-        <b:includable id='comment_count_picker' var='post'>
+      <b:includable id='comment_count_picker' var='post'>
   <a class='comment-link' expr:href='data:post.addCommentUrl' expr:onclick='data:post.addCommentOnclick'>
     <data:post.commentLabelFull/>:
   </a>
 </b:includable>
-        <b:includable id='comment_picker' var='post'>
+      <b:includable id='comment_picker' var='post'>
   <b:if cond='data:post.showThreadedComments'>
     <b:include data='post' name='threaded_comments'/>
   <b:else/>
     <b:include data='post' name='comments'/>
   </b:if>
 </b:includable>
-        <b:includable id='comments' var='post'>
+      <b:includable id='comments' var='post'>
   <div class='comments' id='comments'>
     <a name='comments'/>
     <b:if cond='data:post.allowComments'>
@@ -379,7 +460,7 @@
 
   </div>
 </b:includable>
-        <b:includable id='feedLinks'>
+      <b:includable id='feedLinks'>
   <b:if cond='data:blog.pageType != &quot;item&quot;'> <!-- Blog feed links -->
     <b:if cond='data:feedLinks'>
       <div class='blog-feeds'>
@@ -395,7 +476,7 @@
     </div>
   </b:if>
 </b:includable>
-        <b:includable id='feedLinksBody' var='links'>
+      <b:includable id='feedLinksBody' var='links'>
   <div class='feed-links'>
   <data:feedLinksMsg/>
   <b:loop values='data:links' var='f'>
@@ -403,10 +484,10 @@
   </b:loop>
   </div>
 </b:includable>
-        <b:includable id='iframe_comments' var='post'>
+      <b:includable id='iframe_comments' var='post'>
   <!-- G+ comments, no longer available. The includable is retained for backwards-compatibility. -->
 </b:includable>
-        <b:includable id='mobile-index-post' var='post'>
+      <b:includable id='mobile-index-post' var='post'>
   <div class='mobile-date-outer date-outer'>
     <b:if cond='data:post.dateHeader'>
       <div class='date-header'>
@@ -445,7 +526,7 @@
     </div>
   </div>
 </b:includable>
-        <b:includable id='mobile-main' var='top'>
+      <b:includable id='mobile-main' var='top'>
     <!-- posts -->
     <div class='blog-posts hfeed'>
 
@@ -464,7 +545,7 @@
 
    <b:include name='mobile-nextprev'/>
 </b:includable>
-        <b:includable id='mobile-nextprev'>
+      <b:includable id='mobile-nextprev'>
   <div class='blog-pager' id='blog-pager'>
     <b:if cond='data:newerPageUrl'>
       <div class='mobile-link-button' id='blog-pager-newer-link'>
@@ -489,7 +570,7 @@
   </div>
   <div class='clear'/>
 </b:includable>
-        <b:includable id='mobile-post' var='post'>
+      <b:includable id='mobile-post' var='post'>
   <div class='date-outer'>
     <b:if cond='data:post.dateHeader'>
       <h2 class='date-header'><span><data:post.dateHeader/></span></h2>
@@ -503,7 +584,7 @@ End Commented code -->
 <div class='post hentry uncustomized-post-template' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
 <meta content='data:post.link : data:post.url' expr:itemid='data:post.link' itemType='https://schema.org/WebPage' itemprop='mainEntityOfPage' itemscope='itemscope'/>
           <b:if cond='data:post.thumbnailUrl'>
-            <meta expr:content='data:post.thumbnailUrl' itemprop='image_url'/>
+            <meta expr:content='data:post.url' itemprop='image_url'/>
           </b:if>
           <meta expr:content='data:blog.blogId'/>
           <meta expr:content='data:post.id'/>
@@ -558,6 +639,9 @@ End Commented code -->
                   </b:if>
                 </b:if>
               </span>
+              
+             
+
 
               <span class='post-comment-link'>
                 <b:include cond='data:blog.pageType not in {&quot;item&quot;,&quot;static_page&quot;}                                  and data:post.allowComments' data='post' name='comment_count_picker'/>
@@ -580,7 +664,7 @@ End Commented code -->
     </div>
   </div>
 </b:includable>
-        <b:includable id='nextprev'>
+      <b:includable id='nextprev'>
   <div class='blog-pager' id='blog-pager'>
     <b:if cond='data:newerPageUrl'>
       <span id='blog-pager-newer-link'>
@@ -605,7 +689,7 @@ End Commented code -->
   </div>
   <div class='clear'/>
 </b:includable>
-        <b:includable id='post' var='post'>
+      <b:includable id='post' var='post'>
 <div class='post hentry uncustomized-post-template' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
 <meta content='data:post.link : data:post.url' expr:itemid='data:post.link' itemType='https://schema.org/WebPage' itemprop='mainEntityOfPage' itemscope='itemscope'/>    
   <!-- Commented code
@@ -615,7 +699,7 @@ End Commented code -->
 End Commented code -->
 <div itemprop='image' itemscope='itemscope' itemtype='https://schema.org/ImageObject'>
 <b:if cond='data:post.firstImageUrl'>
-<img alt='Textual description of firstImageUrl' expr:src='data:post.firstImageUrl' style='display:none;'/>
+<img alt='Textual description of firstImageUrl' expr:src='data:post.firstImageUrl' style='display:none'/>
 <meta expr:content='data:post.firstImageUrl' itemprop='image'/>
 </b:if>
 <meta content='800' itemprop='width'/> <!--Images should be at least 696 pixels wide.-->
@@ -648,6 +732,28 @@ End Commented code -->
     </span>
       </h6>  
     <div class='post-header-line-1'/>
+      <!-- Sekce pro sdílení na sociální sítě -->
+    <div class='post-share'>
+      <h5><span>📲 Sdílet: </span>
+      <a expr:href='&quot;https://www.facebook.com/sharer/sharer.php?u=&quot; + data:post.url' target='_blank' title='Sdílet na Facebooku'>
+        <svg fill='#1877F2' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'>
+          <path d='M22 12C22 6.48 17.52 2 12 2S2 6.48 2 12c0 4.84 3.88 8.82 8.7 9.8v-6.9h-2.6V12h2.6v-1.9c0-2.6 1.57-4 3.86-4 1.12 0 2.3.2 2.3.2v2.5h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.9l-.4 2.9h-2.5v6.9C18.12 20.82 22 16.84 22 12z'/>
+        </svg>
+      </a>
+
+      <a expr:href='&quot;https://twitter.com/intent/tweet?text=&quot; + data:post.title + &quot; &quot; + data:post.url' target='_blank' title='Sdílet na Twitteru'>
+        <svg fill='#1DA1F2' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'>
+          <path d='M22.46 6c-.8.35-1.6.6-2.4.7a4.14 4.14 0 001.8-2.3c-.8.5-1.7.8-2.6 1A4.16 4.16 0 0016 4c-2.3 0-4.2 2-4.2 4.5 0 .4 0 .7.1 1a11.8 11.8 0 01-8.6-4.6 4.7 4.7 0 00-.6 2.2c0 1.5.7 2.8 1.8 3.6-.6 0-1.3-.2-1.9-.5v.1c0 2.1 1.4 3.9 3.4 4.3a3.9 3.9 0 01-1.9.1c.5 1.7 2 2.8 3.8 2.9A8.3 8.3 0 012 19.1a11.7 11.7 0 006.4 1.9c7.7 0 12-6.8 12-12.6 0-.2 0-.4-.1-.6A8.6 8.6 0 0022.5 6z'/>
+        </svg>
+      </a>
+
+      <a expr:href='&quot;https://wa.me/?text=&quot; + data:post.title + &quot; &quot; + data:post.url' target='_blank' title='Sdílet na WhatsAppu'>
+        <svg fill='#25D366' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'>
+          <path d='M12 2a10 10 0 00-8 16l-2 4 4-2a10 10 0 108-18zm0 18a8 8 0 01-6.3-13.4 8 8 0 1113.5 8.9A8 8 0 0112 20zm4.4-5.6c-.2-.2-.5-.3-.7-.2-1.6.5-3-.1-5-2.1-2.1-2.2-2.6-3.6-2.1-5 .1-.3 0-.5-.2-.7l-1-1c-.3-.3-.8-.3-1 0-.9.9-1.4 2.3-1 3.8 1 3.4 4.2 6.6 7.6 7.6 1.5.4 2.9-.1 3.8-1 .3-.3.3-.7 0-1l-1-1z'/>
+        </svg>
+      </a>
+      </h5>
+    </div>
     </div>
 
     <!-- Then use the post body as the schema.org description, for good G+/FB snippeting. -->
@@ -691,8 +797,31 @@ End Commented code -->
           </b:if>
         </b:if>
       </span>
+      
+      <!-- Sekce pro sdílení na sociální sítě -->
+    <div class='post-share d-flex justify-content-center'>
+      <h3><span>📲 Sdílet: </span>
+      <a expr:href='&quot;https://www.facebook.com/sharer/sharer.php?u=&quot; + data:post.url' target='_blank' title='Sdílet na Facebooku'>
+        <svg fill='#1877F2' height='44' viewBox='0 0 24 24' width='44' xmlns='http://www.w3.org/2000/svg'>
+          <path d='M22 12C22 6.48 17.52 2 12 2S2 6.48 2 12c0 4.84 3.88 8.82 8.7 9.8v-6.9h-2.6V12h2.6v-1.9c0-2.6 1.57-4 3.86-4 1.12 0 2.3.2 2.3.2v2.5h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.9l-.4 2.9h-2.5v6.9C18.12 20.82 22 16.84 22 12z'/>
+        </svg>
+      </a>
 
-      <span class='post-comment-link'>
+      <a expr:href='&quot;https://twitter.com/intent/tweet?text=&quot; + data:post.title + &quot; &quot; + data:post.url' target='_blank' title='Sdílet na Twitteru'>
+        <svg fill='#1DA1F2' height='44' viewBox='0 0 24 24' width='44' xmlns='http://www.w3.org/2000/svg'>
+          <path d='M22.46 6c-.8.35-1.6.6-2.4.7a4.14 4.14 0 001.8-2.3c-.8.5-1.7.8-2.6 1A4.16 4.16 0 0016 4c-2.3 0-4.2 2-4.2 4.5 0 .4 0 .7.1 1a11.8 11.8 0 01-8.6-4.6 4.7 4.7 0 00-.6 2.2c0 1.5.7 2.8 1.8 3.6-.6 0-1.3-.2-1.9-.5v.1c0 2.1 1.4 3.9 3.4 4.3a3.9 3.9 0 01-1.9.1c.5 1.7 2 2.8 3.8 2.9A8.3 8.3 0 012 19.1a11.7 11.7 0 006.4 1.9c7.7 0 12-6.8 12-12.6 0-.2 0-.4-.1-.6A8.6 8.6 0 0022.5 6z'/>
+        </svg>
+      </a>
+
+      <a expr:href='&quot;https://wa.me/?text=&quot; + data:post.title + &quot; &quot; + data:post.url' target='_blank' title='Sdílet na WhatsAppu'>
+        <svg fill='#25D366' height='44' viewBox='0 0 24 24' width='44' xmlns='http://www.w3.org/2000/svg'>
+          <path d='M12 2a10 10 0 00-8 16l-2 4 4-2a10 10 0 108-18zm0 18a8 8 0 01-6.3-13.4 8 8 0 1113.5 8.9A8 8 0 0112 20zm4.4-5.6c-.2-.2-.5-.3-.7-.2-1.6.5-3-.1-5-2.1-2.1-2.2-2.6-3.6-2.1-5 .1-.3 0-.5-.2-.7l-1-1c-.3-.3-.8-.3-1 0-.9.9-1.4 2.3-1 3.8 1 3.4 4.2 6.6 7.6 7.6 1.5.4 2.9-.1 3.8-1 .3-.3.3-.7 0-1l-1-1z'/>
+        </svg>
+      </a>
+      </h3>
+    </div>
+      
+        <span class='post-comment-link'>
         <b:include cond='data:blog.pageType not in {&quot;item&quot;,&quot;static_page&quot;}                          and data:post.allowComments' data='post' name='comment_count_picker'/>
       </span>
 
@@ -709,11 +838,6 @@ End Commented code -->
         <!-- quickedit pencil -->
         <b:include data='post' name='postQuickEdit'/>
       </span>
-
-      <!-- share buttons -->
-      <div class='post-share-buttons goog-inline-block'>
-        <b:include cond='data:post.sharePostUrl' data='post' name='shareButtons'/>
-      </div>
 
       </div>
 
@@ -752,7 +876,7 @@ End Commented code -->
     </div>
   </div>
 </b:includable>
-        <b:includable id='postQuickEdit' var='post'>
+      <b:includable id='postQuickEdit' var='post'>
   <b:if cond='data:post.editUrl'>
     <span expr:class='&quot;item-control &quot; + data:post.adminClass'>
       <a expr:href='data:post.editUrl' expr:title='data:top.editPostMsg'>
@@ -761,10 +885,10 @@ End Commented code -->
     </span>
   </b:if>
 </b:includable>
-        <b:includable id='shareButtons' var='post'>
+      <b:includable id='shareButtons' var='post'>
   <b:if cond='data:top.showEmailButton'><a class='goog-inline-block share-button sb-email' expr:href='data:post.sharePostUrl + &quot;&amp;target=email&quot;' expr:title='data:top.emailThisMsg' target='_blank'><span class='share-button-link-text'><data:top.emailThisMsg/></span></a></b:if><b:if cond='data:top.showBlogThisButton'><a class='goog-inline-block share-button sb-blog' expr:href='data:post.sharePostUrl + &quot;&amp;target=blog&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=270,width=475\&quot;); return false;&quot;' expr:title='data:top.blogThisMsg' target='_blank'><span class='share-button-link-text'><data:top.blogThisMsg/></span></a></b:if><b:if cond='data:top.showTwitterButton'><a class='goog-inline-block share-button sb-twitter' expr:href='data:post.sharePostUrl + &quot;&amp;target=twitter&quot;' expr:title='data:top.shareToTwitterMsg' target='_blank'><span class='share-button-link-text'><data:top.shareToTwitterMsg/></span></a></b:if><b:if cond='data:top.showFacebookButton'><a class='goog-inline-block share-button sb-facebook' expr:href='data:post.sharePostUrl + &quot;&amp;target=facebook&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=430,width=640\&quot;); return false;&quot;' expr:title='data:top.shareToFacebookMsg' target='_blank'><span class='share-button-link-text'><data:top.shareToFacebookMsg/></span></a></b:if><b:if cond='data:top.showPinterestButton'><a class='goog-inline-block share-button sb-pinterest' expr:href='data:post.sharePostUrl + &quot;&amp;target=pinterest&quot;' expr:title='data:top.shareToPinterestMsg' target='_blank'><span class='share-button-link-text'><data:top.shareToPinterestMsg/></span></a></b:if>
 </b:includable>
-        <b:includable id='status-message'>
+      <b:includable id='status-message'>
   <b:if cond='data:navMessage'>
   <div class='status-msg-wrap'>
     <div class='status-msg-body'>
@@ -779,7 +903,7 @@ End Commented code -->
   <div style='clear: both;'/>
   </b:if>
 </b:includable>
-        <b:includable id='threaded-comment-form' var='post'>
+      <b:includable id='threaded-comment-form' var='post'>
   <div class='comment-form'>
     <a name='comment-form'/>
     <b:if cond='data:mobile'>
@@ -799,7 +923,7 @@ End Commented code -->
     </script>
   </div>
 </b:includable>
-        <b:includable id='threaded_comment_js' var='post'>
+      <b:includable id='threaded_comment_js' var='post'>
   <script async='async' expr:src='data:post.commentSrc' type='text/javascript'/>
 
   <script type='text/javascript'>
@@ -907,8 +1031,8 @@ End Commented code -->
               && comment.author.profileUrl == config.authorUrl;
           return matches ? 'true' : '';
         } else if ('deletelink' == key) {
-          return config.baseUri + '/delete-comment.g?blogID='
-               + config.blogId + '&postID=' + comment.id;
+          return config.baseUri + '/comment/delete/'
+               + config.blogId + '/' + comment.id;
         } else if ('deleteclass' == key) {
           return comment.deleteclass;
         }
@@ -985,7 +1109,7 @@ End Commented code -->
 // ]]>
   </script>
 </b:includable>
-        <b:includable id='threaded_comments' var='post'>
+      <b:includable id='threaded_comments' var='post'>
   <div class='comments' id='comments'>
     <a name='comments'/>
     <h4><data:post.commentLabelFull/>:</h4>
@@ -1018,9 +1142,10 @@ End Commented code -->
     </div>
   </div>
 </b:includable>
-      </b:widget>
-    </b:section>
+    </b:widget>
+  </b:section>
  </div> 
+     
       <script crossorigin='anonymous' integrity='sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz' src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js'/>
 
 </body>
