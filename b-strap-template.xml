@@ -26,13 +26,13 @@
    <div class='container'>
     <nav class='navbar navbar-expand-md bg-dark navbar-dark'>
       <div class='container-fluid'>
-        <a class='navbar-brand' href='#'>LOGO</a>
+        <a class='navbar-brand' expr:href='data:blog.homepageUrl'>LOGO</a>
         <button aria-controls='collapsibleNavbar' aria-expanded='false' aria-label='Toggle navigation' class='navbar-toggler' data-bs-target='#collapsibleNavbar' data-bs-toggle='collapse' type='button'>
           <span class='navbar-toggler-icon'/>
         </button>
         <div class='collapse navbar-collapse' id='collapsibleNavbar'>
            <div class='navbar-nav me-auto text-center'>
-            <a aria-current='page' class='nav-item nav-link active' href='#'>
+            <a aria-current='page' class='nav-item nav-link active' expr:href='data:blog.homepageUrl'>
               <svg class='bi bi-house-fill' fill='currentColor' height='26' viewBox='0 0 16 16' width='26' xmlns='http://www.w3.org/2000/svg'>
                 <path d='M8 .5l6.5 6.5H13v7h-3v-4H6v4H3v-7H1.5L8 .5zm3.5 7.5V14h2V8h-2zm-11 0h2v6h2V8H1.5v6h2V8H1.5zm0 6V8H1V14h2z' fill-rule='evenodd'/>
               </svg>
@@ -112,12 +112,12 @@
       </b:widget>
     </b:section>
     </div>  
- <div class='container-md p-2'>
-   <div class='row'>
-   <div class='col-md-6'>	
+ <div class='container-sm px-4 text-center'>
+   <div class='row gx-2'>
+   <div class='col-sm-6 border border-danger border-2'>	
   <!-- Sekce 1: Článek měsíce (např. nejnovější nebo vybraný článek) -->
   <b:section id='MonthlyPost'>
-    <b:widget id='PopularPosts1' locked='false' title='Článek měsíce' type='PopularPosts' version='1'>
+    <b:widget cond='data:blog.url == data:blog.homepageUrl' id='PopularPosts1' locked='false' title='Článek měsíce' type='PopularPosts' version='1'>
       <b:widget-settings>
         <b:widget-setting name='numItemsToShow'>1</b:widget-setting>
         <b:widget-setting name='showThumbnails'>true</b:widget-setting>
@@ -129,7 +129,7 @@
         
               <div class='row'>
                 <div class='col d-flex flex-column'>
-                  <span class='danger'>Článek měsíce</span>
+                  <span class='danger my-3'>Článek měsíce</span>
                   <header>
                     <h3 class='alert-heading fst-italic mb-3'><data:post.title/></h3>
                   </header>
@@ -141,7 +141,7 @@
                   </div>
                 </div>
                 <div class='col-auto d-flex d-lg-block'>
-                  <img class='img-fluid mx-auto d-block' expr:src='data:post.thumbnail'/>
+                  <img class='img-fluid mx-auto my-5 d-block' expr:src='data:post.thumbnail' width="200" height="250"/>
                 </div>
               </div>
             
@@ -151,10 +151,10 @@
     </b:widget>
   </b:section>
      </div>   
-   <div class='col-md-6'>
+   <div class='col-sm-6 border border-danger border-2'>
   <!-- Sekce 2: Nejčtenější příspěvky -->
   <b:section id='PopularPosts'>
-    <b:widget id='PopularPosts2' locked='false' title='Oblíbené příspěvky' type='PopularPosts' version='1'>
+    <b:widget cond='data:blog.url == data:blog.homepageUrl' id='PopularPosts2' locked='false' title='Oblíbené příspěvky' type='PopularPosts' version='1'>
       <b:widget-settings>
         <b:widget-setting name='numItemsToShow'>1</b:widget-setting>
         <b:widget-setting name='showThumbnails'>true</b:widget-setting>
@@ -166,7 +166,7 @@
         
               <div class='row'>
                 <div class='col d-flex flex-column'>
-                  <span class='danger'>Neuteklo Vám?</span>
+                  <span class='danger my-3'>Neuteklo Vám?</span>
                   <header>
                     <h3 class='alert-heading fst-italic mb-3'><data:post.title/></h3>
                   </header>
@@ -174,11 +174,11 @@
                     <p><data:post.snippet/></p>
                   </div>
                   <div class='d-flex justify-content-end'>
-                    <a class='btn btn-outline-danger border-3 fw-bold text-dark stretched-link mx-5' expr:href='data:post.href'>celý článek</a>
+                    <a class='btn btn-outline-danger border-3 fw-bold text-dark stretched-link mx-2 my-3' expr:href='data:post.href'>celý článek</a>
                   </div>
                 </div>
                 <div class='col-auto d-none d-lg-block'>
-                  <img class='img-fluid mx-auto d-block' expr:src='data:post.thumbnail'/>
+                  <img class='img-fluid mx-auto my-5 d-block' expr:src='data:post.thumbnail' width="200" height="250"/>
                 </div>
               </div>
      
@@ -189,6 +189,8 @@
 </div>
      </div>
    </div>
+   <div class="row g-5">
+    <div class="col-md-8">
   <b:section class='main' id='main' showaddelement='yes'>
     <b:widget id='Blog1' locked='false' title='Příspěvky na blogu' type='Blog' version='1'>
       <b:widget-settings>
@@ -222,7 +224,7 @@
 <b:include data='posts' name='breadcrumb'/>
   
     <!-- posts -->
-    <div class='blog-posts hfeed'>
+    <div class='blog-posts hfeed p-2 my-2'>
 
       <b:include data='top' name='status-message'/>
 
@@ -664,31 +666,7 @@ End Commented code -->
     </div>
   </div>
 </b:includable>
-      <b:includable id='nextprev'>
-  <div class='blog-pager' id='blog-pager'>
-    <b:if cond='data:newerPageUrl'>
-      <span id='blog-pager-newer-link'>
-      <a class='blog-pager-newer-link' expr:href='data:newerPageUrl' expr:id='data:widget.instanceId + &quot;_blog-pager-newer-link&quot;' expr:title='data:newerPageTitle'><data:newerPageTitle/></a>
-      </span>
-    </b:if>
-
-    <b:if cond='data:olderPageUrl'>
-      <span id='blog-pager-older-link'>
-      <a class='blog-pager-older-link' expr:href='data:olderPageUrl' expr:id='data:widget.instanceId + &quot;_blog-pager-older-link&quot;' expr:title='data:olderPageTitle'><data:olderPageTitle/></a>
-      </span>
-    </b:if>
-
-    <a class='home-link' expr:href='data:blog.homepageUrl'><data:homeMsg/></a>
-
-    <b:if cond='data:mobileLinkUrl'>
-      <div class='blog-mobile-link'>
-        <a expr:href='data:mobileLinkUrl'><data:mobileLinkMsg/></a>
-      </div>
-    </b:if>
-
-  </div>
-  <div class='clear'/>
-</b:includable>
+      
       <b:includable id='post' var='post'>
 <div class='post hentry uncustomized-post-template' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
 <meta content='data:post.link : data:post.url' expr:itemid='data:post.link' itemType='https://schema.org/WebPage' itemprop='mainEntityOfPage' itemscope='itemscope'/>    
@@ -1144,7 +1122,47 @@ End Commented code -->
 </b:includable>
     </b:widget>
   </b:section>
- </div> 
+ </div>
+
+ <div class="col-md-4">
+  <b:section class='sidebar' id='sidebar' showaddelement='yes'>
+    <div class='p-3 my-2 text-bg-danger rounded'>
+      <h4 class='fst-italic'>Tajná společnost</h4>
+      <p class='mb-0'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+    </div>
+  </b:section>
+ </div>
+ </div>
+ <b:section id='footer'>
+  <div class='container'>
+    
+    <b:includable id='nextprev'>
+  <div class='blog-pager' id='blog-pager'>
+    <b:if cond='data:newerPageUrl'>
+      <span id='blog-pager-newer-link'>
+      <a class='blog-pager-newer-link' expr:href='data:newerPageUrl' expr:id='data:widget.instanceId + &quot;_blog-pager-newer-link&quot;' expr:title='data:newerPageTitle'><data:newerPageTitle/></a>
+      </span>
+    </b:if>
+
+    <b:if cond='data:olderPageUrl'>
+      <span id='blog-pager-older-link'>
+      <a class='blog-pager-older-link' expr:href='data:olderPageUrl' expr:id='data:widget.instanceId + &quot;_blog-pager-older-link&quot;' expr:title='data:olderPageTitle'><data:olderPageTitle/></a>
+      </span>
+    </b:if>
+
+    <a class='home-link' expr:href='data:blog.homepageUrl'><data:homeMsg/></a>
+
+    <b:if cond='data:mobileLinkUrl'>
+      <div class='blog-mobile-link'>
+        <a expr:href='data:mobileLinkUrl'><data:mobileLinkMsg/></a>
+      </div>
+    </b:if>
+
+  </div>
+  <div class='clear'/>
+  </b:includable>
+  </div>
+ </b:section>
      
       <script crossorigin='anonymous' integrity='sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz' src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js'/>
 
