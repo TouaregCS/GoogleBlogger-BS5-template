@@ -1,4 +1,6 @@
-# GoogleBlogger Bootstrap5 template
+# GoogleBlogger Bootstrap5 template  
+![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)  
+
 ![Static Badge](https://img.shields.io/badge/build-passing-brightgreen) ![GitHub License](https://img.shields.io/github/license/TouaregCS/GoogleBlogger-BS5-template) ![GitHub contributors](https://img.shields.io/github/contributors/TouaregCS/GoogleBlogger-BS5-template) ![GitHub User's stars](https://img.shields.io/github/stars/TouaregCS) ![Static Badge](https://img.shields.io/badge/BS_Version-5-pink?style=flat-square)
 
 
